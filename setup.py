@@ -100,7 +100,10 @@ def _get_build_version(package_dir):
     )
 
 
-package_version = _get_build_version(base_dir)
+# This fork is pinned at upstream 0.3.10 plus a one-line fix. The dynamic
+# version from `git describe` would produce e.g. 0.3.10.post2+g<sha>, which
+# breaks consumers that pin bm25s==0.3.10 exactly.
+package_version = "0.3.10"
 
 with open(base_dir / "README.md", encoding="utf8") as fp:
     long_description = fp.read()
